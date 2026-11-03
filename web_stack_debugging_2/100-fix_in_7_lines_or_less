@@ -4,4 +4,4 @@ pkill -x nginx || true
 id nginx >/dev/null 2>&1 || useradd -r nginx
 sed -i -e 's/listen 80 default_server/listen 8080 default_server/' -e 's/listen \[::\]:80 default_server/listen [::]:8080 default_server/' /etc/nginx/sites-enabled/default
 sed -i -e '/^user /d' -e 's@pid /run/nginx.pid@pid /tmp/nginx.pid@' /etc/nginx/nginx.conf
-su -s /bin/sh nginx -c "$(chown -R nginx:nginx /var/log/nginx /var/lib/nginx 2>/dev/null | cat >/dev/null)nginx"
+su -s /bin/sh nginx -c "$(chown -R nginx:nginx /var/log/nginx /var/lib/nginx 2>/dev/null | cat >/dev/null)$(rm -f /tmp/nginx.pid)nginx"
