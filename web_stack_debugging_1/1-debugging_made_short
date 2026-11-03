@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Configure and start Nginx without service PID tracking
+# Run Nginx on port 80 while making init status report stopped
 sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
 nginx
-rm -f /run/nginx.pid
+sed -i 's#/run/nginx.pid#/tmp/nginx.pid#' /etc/nginx/nginx.conf
