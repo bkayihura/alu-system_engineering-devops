@@ -8,3 +8,5 @@ sed -i -e "s/^user www-data;/user nginx;/" -e "s#pid /run/nginx.pid;#pid /tmp/ng
 chown -R nginx:nginx /var/log/nginx /var/lib/nginx
 rm -f /tmp/nginx.pid
 su -s /bin/sh nginx -c "/usr/sbin/nginx"
+pgrep -a nginx
+netstat -ltnp 2>/dev/null | grep ":8080 "
