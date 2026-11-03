@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Fix Nginx port and remove its service PID file
+# Configure and start Nginx without service PID tracking
 sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
-service nginx restart
+nginx
 rm -f /run/nginx.pid
