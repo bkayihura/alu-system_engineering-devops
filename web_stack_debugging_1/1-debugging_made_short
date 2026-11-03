@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run Nginx on port 80 while making init status report stopped
+# Serve port 80 with Nginx outside init service tracking
 sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
-nginx
-sed -i 's#/run/nginx.pid#/tmp/nginx.pid#' /etc/nginx/nginx.conf
+sed 's#/run/nginx.pid#/tmp/nginx-standalone.pid#' /etc/nginx/nginx.conf > /tmp/nginx-standalone.conf
+nginx -c /tmp/nginx-standalone.conf
